@@ -20,3 +20,5 @@ open http://127.0.0.1:8000/ in the browser
 
 http://127.0.0.1:8000/docs gives documentation of the api (automatically generated)
 
+http://127.0.0.1:8000/get-by-name?test=2&name=Milk eg of querryparamter
+

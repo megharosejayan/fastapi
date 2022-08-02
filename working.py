@@ -9,6 +9,11 @@ class Item(BaseModel):
     price: float
     brand: Optional[str] = None
 
+class UpdateItem(BaseModel):
+    name: Optional[str] = None
+    price: Optional[float] = None
+    brand: Optional[str] = None
+
 #create an endpoint
 @app.get("/")
 def home():
@@ -65,6 +70,22 @@ def create_item(item_id: int,item: Item):
 # @app.get("/get-item/{item_id}/{name}")
 # def get_item(item_id: int, name: str=None): 
 #     return inventory[item_id]
+
+@app.put("/update-item/{item_id}")
+def update_item(item_id: int, item: UpdateItem):
+    if item_id not in inventory:
+        return {"Error":"Item does not exists"}
+
+    if item.name != None:
+        inventory[item_id].name = item.name
+
+    if item.price != None:
+        inventory[item_id].price = item.price
+    
+    if item.brand != None:
+        inventory[item_id].brand = item.brand
+
+    return inventory[item_id]
 
 
 
